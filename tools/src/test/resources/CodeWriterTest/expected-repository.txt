@@ -1,0 +1,8 @@
+package dev.stormcat.tools.repository;
+
+import dev.stormcat.tools.entity.TestTable;
+
+import org.springframework.data.repository.CrudRepository;
+
+public interface TestTableRepository extends CrudRepository<TestTable, String> {
+}

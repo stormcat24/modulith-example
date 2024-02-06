@@ -1,0 +1,14 @@
+package $packageName;
+
+@org.springframework.data.relational.core.mapping.Table("${tableMetaData.tableName}")
+@lombok.Data
+public class ${tableMetaData.entityName} {
+
+#foreach( $columnMetaData in ${tableMetaData.columnMetaDataList})
+    #if(${columnMetaData.primaryKey})
+    @org.springframework.data.annotation.Id
+    #end
+    private ${columnMetaData.javaType} ${columnMetaData.camelCaseColumnName};
+
+#end
+}

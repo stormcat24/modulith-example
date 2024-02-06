@@ -1,0 +1,8 @@
+package $packageName;
+
+import $entityPackageName.${tableMetaData.entityName};
+
+import org.springframework.data.repository.CrudRepository;
+
+public interface ${tableMetaData.repositoryName} extends CrudRepository<${tableMetaData.entityName}, String> {
+}

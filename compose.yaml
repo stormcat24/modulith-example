@@ -1,0 +1,16 @@
+version: "3.9"
+services:
+  db:
+    image: mysql/mysql-server:5.7
+    volumes:
+      - db_data:/var/lib/mysql
+      - ./containers/mysql/etc/mysql/conf.d:/etc/mysql/conf.d
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: modulith
+      MYSQL_USER: spring
+      MYSQL_PASSWORD: summer
+    ports:
+      - "3306:3306"
+volumes:
+  db_data:

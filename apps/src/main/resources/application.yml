@@ -1,0 +1,15 @@
+spring:
+  devtools:
+    livereload:
+      enabled: true
+    restart:
+      enabled: true
+
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/modulith?useSSL=false&serverTimezone=UTC
+    username: spring
+    password: summer
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+liquibase:
+  change-log: classpath:/db/db.changelog-master.yaml

@@ -1,0 +1,28 @@
+CREATE TABLE test_table
+(
+    id                INT AUTO_INCREMENT,
+    varchar_column    VARCHAR(100),
+    char_column       CHAR(100),
+    text_column       TEXT,
+    longtext_column   LONGTEXT,
+    float_column      FLOAT,
+    double_column DOUBLE,
+    decimal_column    DECIMAL(10, 2),
+    bit_column        BIT(1),
+    date_column       DATE,
+    datetime_column   DATETIME,
+    timestamp_column  TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    time_column       TIME,
+    year_column YEAR,
+    binary_column     BINARY(100),
+    varbinary_column  VARBINARY(100),
+    blob_column       BLOB,
+    tinyblob_column   TINYBLOB,
+    mediumblob_column MEDIUMBLOB,
+    longblob_column   LONGBLOB,
+    enum_column       ENUM('a', 'b', 'c'),
+    set_column SET('a', 'b', 'c'),
+    json_column       JSON,
+    created_at        TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY (id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
