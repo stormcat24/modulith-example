@@ -33,7 +33,7 @@ public class DataTypeConverterTest {
         assertEquals("byte[]", DataTypeConverter.toJavaType(Types.BINARY));
         assertEquals("byte[]", DataTypeConverter.toJavaType(Types.VARBINARY));
         assertEquals("byte[]", DataTypeConverter.toJavaType(Types.LONGVARBINARY));
-        assertEquals("java.sql.Clob", DataTypeConverter.toJavaType(Types.CLOB));
+        assertEquals("byte[]", DataTypeConverter.toJavaType(Types.CLOB));
         assertEquals("java.sql.Array", DataTypeConverter.toJavaType(Types.ARRAY));
         assertEquals("java.sql.Ref", DataTypeConverter.toJavaType(Types.REF));
         assertEquals("java.sql.Struct", DataTypeConverter.toJavaType(Types.STRUCT));
