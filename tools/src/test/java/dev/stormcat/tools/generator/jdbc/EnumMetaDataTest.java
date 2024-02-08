@@ -15,7 +15,7 @@ public class EnumMetaDataTest {
 
     @Test
     public void analyze(Connection connection) {
-        TestDataLoader.load(connection, "/TableAnalyzerTest/test-schema.sql");
+        TestDataLoader.load(connection, "/test-schema.sql");
 
         List<EnumMetaData> enumMetaDataList = new EnumAnalyzer(connection).analyze();
         assertEquals(1, enumMetaDataList.size());

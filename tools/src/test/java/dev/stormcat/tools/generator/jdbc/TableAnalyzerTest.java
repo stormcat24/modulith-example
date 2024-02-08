@@ -16,7 +16,7 @@ public class TableAnalyzerTest {
 
     @Test
     void analyze_when_test_schema_sql(Connection connection) throws Exception {
-        TestDataLoader.load(connection, "/TableAnalyzerTest/test-schema.sql");
+        TestDataLoader.load(connection, "/test-schema.sql");
         EnumAnalyzer enumAnalyzer = new EnumAnalyzer(connection);
         List<EnumMetaData> enumMetaDataList = enumAnalyzer.analyze();
         TableMetaData metadata = new TableAnalyzer(connection.getMetaData(), enumMetaDataList, "test_table").analyze();

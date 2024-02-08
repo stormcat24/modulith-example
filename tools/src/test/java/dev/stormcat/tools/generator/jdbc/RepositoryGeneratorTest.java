@@ -27,7 +27,7 @@ public class RepositoryGeneratorTest {
 
     @Test
     public void write(Connection connection) throws Exception {
-        TestDataLoader.load(connection, "/TableAnalyzerTest/test-schema.sql");
+        TestDataLoader.load(connection, "/test-schema.sql");
 
         TableMetaData metadata = new TableAnalyzer(connection.getMetaData(), List.of(), "test_table").analyze();
 
