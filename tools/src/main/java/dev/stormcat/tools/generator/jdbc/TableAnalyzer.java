@@ -7,14 +7,14 @@ import java.sql.DatabaseMetaData;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Types;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 @AllArgsConstructor
 public class TableAnalyzer {
 
     private DatabaseMetaData metaData;
+
+    private List<EnumMetaData> enumMetaDataList;
 
     private String tableName;
 
@@ -33,7 +33,6 @@ public class TableAnalyzer {
         while (columns.next()) {
             String columnName = columns.getString("COLUMN_NAME");
             int datatype = columns.getInt("DATA_TYPE");
-            String typeName = columns.getString("TYPE_NAME");
             String columnSize = columns.getString("COLUMN_SIZE");
             String decimalDigits = columns.getString("DECIMAL_DIGITS");
             String isNullable = columns.getString("IS_NULLABLE");
@@ -47,8 +46,12 @@ public class TableAnalyzer {
                     .isPrimaryKey(primaryKeyColumnNames.contains(columnName))
                     .columnSize(Integer.parseInt(columnSize))
                     .decimalDigits(decimalDigits)
-                    .isEnum("ENUM".equals(typeName))
                     .build();
+
+            enumMetaDataList.stream().findFirst()
+                    .filter(em -> em.getTableName().equals(tableName) && em.getColumnName().equals(columnName))
+                    .ifPresent(em -> columnMetaData.setEnumMetaData(em));
+
             tableMetaData.addColumnMetaData(columnMetaData);
         }
 

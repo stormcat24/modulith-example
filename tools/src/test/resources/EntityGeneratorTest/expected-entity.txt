@@ -1,0 +1,56 @@
+package dev.stormcat.tools.entity;
+
+@org.springframework.data.relational.core.mapping.Table("test_table")
+@lombok.Data
+public class TestTable {
+
+    @org.springframework.data.annotation.Id
+    private int id;
+
+    private String varcharColumn;
+
+    private String charColumn;
+
+    private String textColumn;
+
+    private String longtextColumn;
+
+    private float floatColumn;
+
+    private double doubleColumn;
+
+    private java.math.BigDecimal decimalColumn;
+
+    private boolean bitColumn;
+
+    private java.time.LocalDateTime dateColumn;
+
+    private java.time.LocalDateTime datetimeColumn;
+
+    private java.time.LocalDateTime timestampColumn;
+
+    private java.time.LocalDateTime timeColumn;
+
+    private java.time.LocalDateTime yearColumn;
+
+    private byte[] binaryColumn;
+
+    private byte[] varbinaryColumn;
+
+    private byte[] blobColumn;
+
+    private byte[] tinyblobColumn;
+
+    private byte[] mediumblobColumn;
+
+    private byte[] longblobColumn;
+
+    private TestTableEnumColumn enumColumn;
+
+    private String setColumn;
+
+    private String jsonColumn;
+
+    private java.time.LocalDateTime createdAt;
+
+}

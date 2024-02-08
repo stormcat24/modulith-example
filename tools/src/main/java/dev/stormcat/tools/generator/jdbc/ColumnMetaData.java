@@ -6,7 +6,6 @@ import java.sql.Types;
 
 @Data
 @Builder
-//@RequiredArgsConstructor
 public class ColumnMetaData {
 
     private final String columnName;
@@ -23,15 +22,11 @@ public class ColumnMetaData {
 
     private final String decimalDigits;
 
-    private final boolean isEnum;
+    private EnumMetaData enumMetaData;
 
-    public String getCamelCaseColumnName() {
-        String[] split = columnName.split("_");
-        StringBuilder sb = new StringBuilder();
-        for (String s : split) {
-            sb.append(s.substring(0, 1).toUpperCase()).append(s.substring(1).toLowerCase());
-        }
-        return sb.toString();
+    public String getLowerCamelCaseColumnName() {
+        String upperCamelCase = StringUtil.toCamelCase(columnName);
+        return upperCamelCase.substring(0, 1).toLowerCase() + upperCamelCase.substring(1);
     }
 
     public String getJavaType() {

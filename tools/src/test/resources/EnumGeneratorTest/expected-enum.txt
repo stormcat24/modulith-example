@@ -1,0 +1,24 @@
+package dev.stormcat.tools.entity;
+
+public enum TestTableEnumColumn {
+
+    A("a"),
+    B("b"),
+    C("c"),
+    ;
+
+    private final String value;
+
+    TestTableEnumColumn(String value) {
+        this.value = value;
+    }
+
+    public static TestTableEnumColumn fromValue(String value) {
+        for (TestTableEnumColumn enumColumn : TestTableEnumColumn.values()) {
+            if (enumColumn.value.equals(value)) {
+                return enumColumn;
+            }
+        }
+        throw new IllegalArgumentException("Unexpected value: " + value);
+    }
+}

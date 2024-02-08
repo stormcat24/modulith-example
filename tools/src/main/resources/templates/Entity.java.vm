@@ -8,7 +8,11 @@ public class ${tableMetaData.entityName} {
     #if(${columnMetaData.primaryKey})
     @org.springframework.data.annotation.Id
     #end
-    private ${columnMetaData.javaType} ${columnMetaData.camelCaseColumnName};
+    #if(${columnMetaData.enumMetaData})
+    private ${columnMetaData.enumMetaData.enumName} ${columnMetaData.lowerCamelCaseColumnName};
+    #else
+    private ${columnMetaData.javaType} ${columnMetaData.lowerCamelCaseColumnName};
+    #end
 
 #end
 }

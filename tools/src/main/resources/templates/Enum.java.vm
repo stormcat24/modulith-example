@@ -1,0 +1,24 @@
+package $packageName;
+
+public enum ${enumMetaData.enumName} {
+
+#foreach( $enumValue in ${enumMetaData.enumValues} )
+    $enumValue.toUpperCase()("$enumValue"),
+#end
+    ;
+
+    private final String value;
+
+    ${enumMetaData.enumName}(String value) {
+        this.value = value;
+    }
+
+    public static ${enumMetaData.enumName} fromValue(String value) {
+        for (${enumMetaData.enumName} enumColumn : ${enumMetaData.enumName}.values()) {
+            if (enumColumn.value.equals(value)) {
+                return enumColumn;
+            }
+        }
+        throw new IllegalArgumentException("Unexpected value: " + value);
+    }
+}

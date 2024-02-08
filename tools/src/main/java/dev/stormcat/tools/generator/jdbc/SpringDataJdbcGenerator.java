@@ -25,12 +25,15 @@ public class SpringDataJdbcGenerator {
         Path generatedJavaDir = currentDir.resolve("src/generated/java");
 
         try (Connection connection = DriverManager.getConnection(option.getUrl(), option.getUsername(), option.getPassword())) {
+            EnumAnalyzer enumAnalyzer = new EnumAnalyzer(connection);
+            List<EnumMetaData> enumMetaDataList = enumAnalyzer.analyze();
+
             DatabaseMetaData metaData = connection.getMetaData();
             ResultSet tables = metaData.getTables(null, null, "%", new String[]{"TABLE"});
             while (tables.next()) {
                 String tableName = tables.getString("TABLE_NAME");
                 if (!ignoreTables.contains(tableName)) {
-                    TableMetaData tableMetaData = new TableAnalyzer(metaData, tableName).analyze();
+                    TableMetaData tableMetaData = new TableAnalyzer(metaData, enumMetaDataList, tableName).analyze();
                     generate(generatedJavaDir, tableMetaData, option.getEntityPackageName(), option.getRepositoryPackageName());
                 }
             }
@@ -63,13 +66,26 @@ public class SpringDataJdbcGenerator {
             entityWriter = new FileWriter(entityDirectory.resolve(tableMetaData.getEntityName() + ".java").toFile());
             repositoryWriter = new FileWriter(repositoryDirectory.resolve(tableMetaData.getRepositoryName() + ".java").toFile());
 
-            CodeWriter codeWriter = new CodeWriter(velocityEngine, tableMetaData, entityPackageName, repositoryPackageName, entityWriter, repositoryWriter);
-            codeWriter.writeAll();
+            new EntityGenerator(velocityEngine, tableMetaData, entityPackageName).write(entityWriter);
+            new RepositoryGenerator(velocityEngine, tableMetaData, repositoryPackageName, entityPackageName).write(repositoryWriter);
+
+            tableMetaData.getColumnMetaDataList().stream().filter(cm -> cm.getEnumMetaData() != null).map(ColumnMetaData::getEnumMetaData).forEach(em -> {
+                writeEnum(velocityEngine, em, entityDirectory, entityPackageName);
+            });
+
         } catch (IOException e) {
             throw new RuntimeException(e);
         } finally {
             entityWriter.close();
             repositoryWriter.close();
+        }
+    }
+
+    private static void writeEnum(VelocityEngine velocityEngine, EnumMetaData enumMetaData, Path directory, String packageName) {
+        try ( FileWriter enumWriter = new FileWriter(directory.resolve(enumMetaData.getEnumName() + ".java").toFile())) {
+            new EnumGenerator(velocityEngine, enumMetaData, packageName).write(enumWriter);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
     }
 
