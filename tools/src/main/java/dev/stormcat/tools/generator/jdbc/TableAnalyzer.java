@@ -20,7 +20,6 @@ public class TableAnalyzer {
 
     public TableMetaData analyze() throws SQLException {
         ResultSet columns = metaData.getColumns(null, null, tableName, null);
-
         ResultSet primaryKeys = metaData.getPrimaryKeys(null, null, tableName);
         Set<String> primaryKeyColumnNames = HashSet.newHashSet(0);
         while (primaryKeys.next()) {
@@ -28,8 +27,8 @@ public class TableAnalyzer {
         }
 
         TableMetaData tableMetaData = new TableMetaData(tableName);
-        tableMetaData.setPrimaryKeyColumnNames(primaryKeyColumnNames);
 
+        Map<String, ColumnMetaData> columnMetaDataMap = new HashMap<>();
         while (columns.next()) {
             String columnName = columns.getString("COLUMN_NAME");
             int datatype = columns.getInt("DATA_TYPE");
@@ -53,8 +52,29 @@ public class TableAnalyzer {
                     .ifPresent(em -> columnMetaData.setEnumMetaData(em));
 
             tableMetaData.addColumnMetaData(columnMetaData);
+            columnMetaDataMap.put(columnName, columnMetaData);
         }
 
+        ResultSet indexes = metaData.getIndexInfo(null, null, tableName, false, true);
+        Map<String, IndexMetaData> indexMetaDataMap = new HashMap<>();
+        while (indexes.next()) {
+            String indexName = indexes.getString("INDEX_NAME");
+            if ("PRIMARY".equals(indexName)) {
+                continue;
+            }
+            IndexMetaData currentIndex = indexMetaDataMap.get(indexName);
+            if (currentIndex == null) {
+                currentIndex = new IndexMetaData(indexName, !indexes.getBoolean("NON_UNIQUE"));
+                indexMetaDataMap.put(indexName, currentIndex);
+            }
+
+            String columnName = indexes.getString("COLUMN_NAME");
+            ColumnMetaData columnMetaData = columnMetaDataMap.get(columnName);
+            if (columnMetaData != null) {
+                currentIndex.addColumn(columnMetaData);
+            }
+        }
+        tableMetaData.addAllIndex(indexMetaDataMap.values().stream().toList());
         return tableMetaData;
     }
 }

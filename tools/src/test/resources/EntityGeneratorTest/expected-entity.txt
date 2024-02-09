@@ -51,6 +51,12 @@ public class TestTable {
 
     private String jsonColumn;
 
+    private int singleIndexColumn;
+
+    private int compositeIndexColumn1;
+
+    private int compositeIndexColumn2;
+
     private java.time.LocalDateTime createdAt;
 
 }

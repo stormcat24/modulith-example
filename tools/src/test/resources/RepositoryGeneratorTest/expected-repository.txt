@@ -3,6 +3,16 @@ package dev.stormcat.tools.repository;
 import dev.stormcat.tools.entity.TestTable;
 
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.jdbc.repository.query.Query;
+import org.springframework.data.repository.query.Param;
+
+import java.util.List;
 
 public interface TestTableRepository extends CrudRepository<TestTable, String> {
+    @Query("SELECT * FROM test_table WHERE single_index_column = :singleIndexColumn")
+    List<TestTable> findBySingleIndexColumn(@Param("singleIndexColumn") int singleIndexColumn);
+
+    @Query("SELECT * FROM test_table WHERE composite_index_column1 = :compositeIndexColumn1 AND composite_index_column2 = :compositeIndexColumn2")
+    List<TestTable> findByCompositeIndexColumn1AndCompositeIndexColumn2(@Param("compositeIndexColumn1") int compositeIndexColumn1, @Param("compositeIndexColumn2") int compositeIndexColumn2);
+
 }

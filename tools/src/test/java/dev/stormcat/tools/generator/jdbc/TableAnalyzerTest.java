@@ -9,7 +9,6 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import java.sql.Connection;
 import java.util.List;
-import java.util.Set;
 
 @ExtendWith(MysqlExtension.class)
 public class TableAnalyzerTest {
@@ -25,9 +24,8 @@ public class TableAnalyzerTest {
         assertEquals("TestTable", metadata.getEntityName());
         assertEquals("test_table", metadata.getLemmaTableName());
         assertEquals("TestTableRepository", metadata.getRepositoryName());
-        assertEquals(Set.of("id"), metadata.getPrimaryKeyColumnNames());
 
-        ColumnMetaData idColumn = metadata.getColumnMetaDataList().get(0);
+        ColumnMetaData idColumn = metadata.getColumns().get(0);
         assertEquals("id", idColumn.getColumnName());
         assertEquals("id", idColumn.getLowerCamelCaseColumnName());
         assertEquals("int", idColumn.getJavaType());
@@ -36,7 +34,7 @@ public class TableAnalyzerTest {
         assertEquals(true, idColumn.isPrimaryKey());
         assertEquals(true, idColumn.isAutoIncrement());
 
-        ColumnMetaData varcharColumn = metadata.getColumnMetaDataList().get(1);
+        ColumnMetaData varcharColumn = metadata.getColumns().get(1);
         assertEquals("varchar_column", varcharColumn.getColumnName());
         assertEquals("varcharColumn", varcharColumn.getLowerCamelCaseColumnName());
         assertEquals("String", varcharColumn.getJavaType());
@@ -45,7 +43,7 @@ public class TableAnalyzerTest {
         assertEquals(false, varcharColumn.isPrimaryKey());
         assertEquals(false, varcharColumn.isAutoIncrement());
 
-        ColumnMetaData charColumn = metadata.getColumnMetaDataList().get(2);
+        ColumnMetaData charColumn = metadata.getColumns().get(2);
         assertEquals("char_column", charColumn.getColumnName());
         assertEquals("charColumn", charColumn.getLowerCamelCaseColumnName());
         assertEquals("String", charColumn.getJavaType());
@@ -54,7 +52,7 @@ public class TableAnalyzerTest {
         assertEquals(false, charColumn.isPrimaryKey());
         assertEquals(false, charColumn.isAutoIncrement());
 
-        ColumnMetaData textColumn = metadata.getColumnMetaDataList().get(3);
+        ColumnMetaData textColumn = metadata.getColumns().get(3);
         assertEquals("text_column", textColumn.getColumnName());
         assertEquals("textColumn", textColumn.getLowerCamelCaseColumnName());
         assertEquals("String", textColumn.getJavaType());
@@ -63,7 +61,7 @@ public class TableAnalyzerTest {
         assertEquals(false, textColumn.isPrimaryKey());
         assertEquals(false, textColumn.isAutoIncrement());
 
-        ColumnMetaData longtextColumn = metadata.getColumnMetaDataList().get(4);
+        ColumnMetaData longtextColumn = metadata.getColumns().get(4);
         assertEquals("longtext_column", longtextColumn.getColumnName());
         assertEquals("longtextColumn", longtextColumn.getLowerCamelCaseColumnName());
         assertEquals("String", longtextColumn.getJavaType());
@@ -72,7 +70,7 @@ public class TableAnalyzerTest {
         assertEquals(false, longtextColumn.isPrimaryKey());
         assertEquals(false, longtextColumn.isAutoIncrement());
 
-        ColumnMetaData floatColumn = metadata.getColumnMetaDataList().get(5);
+        ColumnMetaData floatColumn = metadata.getColumns().get(5);
         assertEquals("float_column", floatColumn.getColumnName());
         assertEquals("floatColumn", floatColumn.getLowerCamelCaseColumnName());
         assertEquals("float", floatColumn.getJavaType());
@@ -81,7 +79,7 @@ public class TableAnalyzerTest {
         assertEquals(false, floatColumn.isPrimaryKey());
         assertEquals(false, floatColumn.isAutoIncrement());
 
-        ColumnMetaData doubleColumn = metadata.getColumnMetaDataList().get(6);
+        ColumnMetaData doubleColumn = metadata.getColumns().get(6);
         assertEquals("double_column", doubleColumn.getColumnName());
         assertEquals("doubleColumn", doubleColumn.getLowerCamelCaseColumnName());
         assertEquals("double", doubleColumn.getJavaType());
@@ -90,7 +88,7 @@ public class TableAnalyzerTest {
         assertEquals(false, doubleColumn.isPrimaryKey());
         assertEquals(false, doubleColumn.isAutoIncrement());
 
-        ColumnMetaData decimalColumn = metadata.getColumnMetaDataList().get(7);
+        ColumnMetaData decimalColumn = metadata.getColumns().get(7);
         assertEquals("decimal_column", decimalColumn.getColumnName());
         assertEquals("decimalColumn", decimalColumn.getLowerCamelCaseColumnName());
         assertEquals("java.math.BigDecimal", decimalColumn.getJavaType());
@@ -99,7 +97,7 @@ public class TableAnalyzerTest {
         assertEquals(false, decimalColumn.isPrimaryKey());
         assertEquals(false, decimalColumn.isAutoIncrement());
 
-        ColumnMetaData bitColumn = metadata.getColumnMetaDataList().get(8);
+        ColumnMetaData bitColumn = metadata.getColumns().get(8);
         assertEquals("bit_column", bitColumn.getColumnName());
         assertEquals("bitColumn", bitColumn.getLowerCamelCaseColumnName());
         assertEquals("boolean", bitColumn.getJavaType());
@@ -108,7 +106,7 @@ public class TableAnalyzerTest {
         assertEquals(false, bitColumn.isPrimaryKey());
         assertEquals(false, bitColumn.isAutoIncrement());
 
-        ColumnMetaData dateColumn = metadata.getColumnMetaDataList().get(9);
+        ColumnMetaData dateColumn = metadata.getColumns().get(9);
         assertEquals("date_column", dateColumn.getColumnName());
         assertEquals("dateColumn", dateColumn.getLowerCamelCaseColumnName());
         assertEquals("java.time.LocalDateTime", dateColumn.getJavaType());
@@ -117,7 +115,7 @@ public class TableAnalyzerTest {
         assertEquals(false, dateColumn.isPrimaryKey());
         assertEquals(false, dateColumn.isAutoIncrement());
 
-        ColumnMetaData datetimeColumn = metadata.getColumnMetaDataList().get(10);
+        ColumnMetaData datetimeColumn = metadata.getColumns().get(10);
         assertEquals("datetime_column", datetimeColumn.getColumnName());
         assertEquals("datetimeColumn", datetimeColumn.getLowerCamelCaseColumnName());
         assertEquals("java.time.LocalDateTime", datetimeColumn.getJavaType());
@@ -126,7 +124,7 @@ public class TableAnalyzerTest {
         assertEquals(false, datetimeColumn.isPrimaryKey());
         assertEquals(false, datetimeColumn.isAutoIncrement());
 
-        ColumnMetaData timestampColumn = metadata.getColumnMetaDataList().get(11);
+        ColumnMetaData timestampColumn = metadata.getColumns().get(11);
         assertEquals("timestamp_column", timestampColumn.getColumnName());
         assertEquals("timestampColumn", timestampColumn.getLowerCamelCaseColumnName());
         assertEquals("java.time.LocalDateTime", timestampColumn.getJavaType());
@@ -135,7 +133,7 @@ public class TableAnalyzerTest {
         assertEquals(false, timestampColumn.isPrimaryKey());
         assertEquals(false, timestampColumn.isAutoIncrement());
 
-        ColumnMetaData timeColumn = metadata.getColumnMetaDataList().get(12);
+        ColumnMetaData timeColumn = metadata.getColumns().get(12);
         assertEquals("time_column", timeColumn.getColumnName());
         assertEquals("timeColumn", timeColumn.getLowerCamelCaseColumnName());
         assertEquals("java.time.LocalDateTime", timeColumn.getJavaType());
@@ -144,7 +142,7 @@ public class TableAnalyzerTest {
         assertEquals(false, timeColumn.isPrimaryKey());
         assertEquals(false, timeColumn.isAutoIncrement());
 
-        ColumnMetaData yearColumn = metadata.getColumnMetaDataList().get(13);
+        ColumnMetaData yearColumn = metadata.getColumns().get(13);
         assertEquals("year_column", yearColumn.getColumnName());
         assertEquals("yearColumn", yearColumn.getLowerCamelCaseColumnName());
         assertEquals("java.time.LocalDateTime", yearColumn.getJavaType());
@@ -153,7 +151,7 @@ public class TableAnalyzerTest {
         assertEquals(false, yearColumn.isPrimaryKey());
         assertEquals(false, yearColumn.isAutoIncrement());
 
-        ColumnMetaData binaryColumn = metadata.getColumnMetaDataList().get(14);
+        ColumnMetaData binaryColumn = metadata.getColumns().get(14);
         assertEquals("binary_column", binaryColumn.getColumnName());
         assertEquals("binaryColumn", binaryColumn.getLowerCamelCaseColumnName());
         assertEquals("byte[]", binaryColumn.getJavaType());
@@ -162,7 +160,7 @@ public class TableAnalyzerTest {
         assertEquals(false, binaryColumn.isPrimaryKey());
         assertEquals(false, binaryColumn.isAutoIncrement());
 
-        ColumnMetaData varbinaryColumn = metadata.getColumnMetaDataList().get(15);
+        ColumnMetaData varbinaryColumn = metadata.getColumns().get(15);
         assertEquals("varbinary_column", varbinaryColumn.getColumnName());
         assertEquals("varbinaryColumn", varbinaryColumn.getLowerCamelCaseColumnName());
         assertEquals("byte[]", varbinaryColumn.getJavaType());
@@ -171,7 +169,7 @@ public class TableAnalyzerTest {
         assertEquals(false, varbinaryColumn.isPrimaryKey());
         assertEquals(false, varbinaryColumn.isAutoIncrement());
 
-        ColumnMetaData blobColumn = metadata.getColumnMetaDataList().get(16);
+        ColumnMetaData blobColumn = metadata.getColumns().get(16);
         assertEquals("blob_column", blobColumn.getColumnName());
         assertEquals("blobColumn", blobColumn.getLowerCamelCaseColumnName());
         assertEquals("byte[]", blobColumn.getJavaType());
@@ -180,7 +178,7 @@ public class TableAnalyzerTest {
         assertEquals(false, blobColumn.isPrimaryKey());
         assertEquals(false, blobColumn.isAutoIncrement());
 
-        ColumnMetaData tinyblobColumn = metadata.getColumnMetaDataList().get(17);
+        ColumnMetaData tinyblobColumn = metadata.getColumns().get(17);
         assertEquals("tinyblob_column", tinyblobColumn.getColumnName());
         assertEquals("tinyblobColumn", tinyblobColumn.getLowerCamelCaseColumnName());
         assertEquals("byte[]", tinyblobColumn.getJavaType());
@@ -189,7 +187,7 @@ public class TableAnalyzerTest {
         assertEquals(false, tinyblobColumn.isPrimaryKey());
         assertEquals(false, tinyblobColumn.isAutoIncrement());
 
-        ColumnMetaData mediumblobColumn = metadata.getColumnMetaDataList().get(18);
+        ColumnMetaData mediumblobColumn = metadata.getColumns().get(18);
         assertEquals("mediumblob_column", mediumblobColumn.getColumnName());
         assertEquals("mediumblobColumn", mediumblobColumn.getLowerCamelCaseColumnName());
         assertEquals("byte[]", mediumblobColumn.getJavaType());
@@ -198,7 +196,7 @@ public class TableAnalyzerTest {
         assertEquals(false, mediumblobColumn.isPrimaryKey());
         assertEquals(false, mediumblobColumn.isAutoIncrement());
 
-        ColumnMetaData longblobColumn = metadata.getColumnMetaDataList().get(19);
+        ColumnMetaData longblobColumn = metadata.getColumns().get(19);
         assertEquals("longblob_column", longblobColumn.getColumnName());
         assertEquals("longblobColumn", longblobColumn.getLowerCamelCaseColumnName());
         assertEquals("byte[]", longblobColumn.getJavaType());
@@ -207,7 +205,7 @@ public class TableAnalyzerTest {
         assertEquals(false, longblobColumn.isPrimaryKey());
         assertEquals(false, longblobColumn.isAutoIncrement());
 
-        ColumnMetaData enumColumn = metadata.getColumnMetaDataList().get(20);
+        ColumnMetaData enumColumn = metadata.getColumns().get(20);
         assertEquals("enum_column", enumColumn.getColumnName());
         assertEquals("enumColumn", enumColumn.getLowerCamelCaseColumnName());
         assertEquals("String", enumColumn.getJavaType());

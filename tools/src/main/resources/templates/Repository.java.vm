@@ -3,6 +3,22 @@ package $packageName;
 import $entityPackageName.${tableMetaData.entityName};
 
 import org.springframework.data.repository.CrudRepository;
+#if($tableMetaData.indexes.size() > 0)
+import org.springframework.data.jdbc.repository.query.Query;
+import org.springframework.data.repository.query.Param;
+
+import java.util.List;
+#end
 
 public interface ${tableMetaData.repositoryName} extends CrudRepository<${tableMetaData.entityName}, String> {
+#foreach($index in $tableMetaData.indexes)
+    #if(${index.isUnique})
+    @Query("SELECT * FROM ${tableMetaData.tableName} WHERE ${index.springDataJdbcArgumentClause}")
+    ${tableMetaData.entityName} findBy${index.upperCamelColumnPairName}(${index.javaArgumentClause});
+    #else
+    @Query("SELECT * FROM ${tableMetaData.tableName} WHERE ${index.springDataJdbcArgumentClause}")
+    List<${tableMetaData.entityName}> findBy${index.upperCamelColumnPairName}(${index.javaArgumentClause});
+    #end
+
+#end
 }

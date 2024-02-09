@@ -28,8 +28,9 @@ public class RepositoryGeneratorTest {
     @Test
     public void write(Connection connection) throws Exception {
         TestDataLoader.load(connection, "/test-schema.sql");
-
-        TableMetaData metadata = new TableAnalyzer(connection.getMetaData(), List.of(), "test_table").analyze();
+        EnumAnalyzer enumAnalyzer = new EnumAnalyzer(connection);
+        List<EnumMetaData> enumMetaDataList = enumAnalyzer.analyze();
+        TableMetaData metadata = new TableAnalyzer(connection.getMetaData(), enumMetaDataList, "test_table").analyze();
 
         Writer writer = new StringWriter();
         RepositoryGenerator generator = new RepositoryGenerator(

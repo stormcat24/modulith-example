@@ -16,4 +16,14 @@ public class ColumnMetaDataTest {
 
         assertEquals("int", columnMetaData.getJavaType());
     }
+
+    @Test
+    public void getArgumentClause_when_DATA_TYPE_is_INTEGER() {
+        ColumnMetaData columnMetaData = ColumnMetaData.builder()
+                .dataType(Types.INTEGER)
+                .columnName("test_column")
+                .build();
+
+        assertEquals("@Param(\"testColumn\") int testColumn", columnMetaData.getArgumentClause());
+    }
 }

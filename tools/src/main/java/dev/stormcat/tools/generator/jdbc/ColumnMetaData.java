@@ -24,12 +24,23 @@ public class ColumnMetaData {
 
     private EnumMetaData enumMetaData;
 
+    public String getUpperCamelCaseColumnName() {
+        return StringUtil.toCamelCase(columnName);
+    }
     public String getLowerCamelCaseColumnName() {
-        String upperCamelCase = StringUtil.toCamelCase(columnName);
+        String upperCamelCase = getUpperCamelCaseColumnName();
         return upperCamelCase.substring(0, 1).toLowerCase() + upperCamelCase.substring(1);
     }
 
     public String getJavaType() {
         return DataTypeConverter.toJavaType(dataType);
+    }
+
+    public String getArgumentClause() {
+        return String.format("@Param(\"%s\") %s %s", getLowerCamelCaseColumnName(), getJavaType(), getLowerCamelCaseColumnName());
+    }
+
+    public String getSpringDataJdbcArgumentClause()  {
+        return String.format("%s = :%s", columnName, getLowerCamelCaseColumnName());
     }
 }

@@ -1,26 +1,21 @@
 package dev.stormcat.tools.generator.jdbc;
 
 import dev.stormcat.tools.nlp.WordAnalyzer;
-import lombok.AccessLevel;
-import lombok.Data;
-import lombok.Setter;
+import lombok.Getter;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
-@Data
+@Getter
 public class TableMetaData {
 
     private final String tableName;
 
-    @Setter(AccessLevel.NONE)
-    private String lemmaTableName;
+    private final String lemmaTableName;
 
-    private Set<String> primaryKeyColumnNames;
+    private final List<ColumnMetaData> columns = new ArrayList<>();
 
-    @Setter(AccessLevel.NONE)
-    private List<ColumnMetaData> columnMetaDataList = new ArrayList<>();
+    private final List<IndexMetaData> indexes = new ArrayList<>();
 
     public TableMetaData(String tableName) {
         this.tableName = tableName;
@@ -41,7 +36,15 @@ public class TableMetaData {
     }
 
     public void addColumnMetaData(ColumnMetaData columnMetaData) {
-        columnMetaDataList.add(columnMetaData);
+        columns.add(columnMetaData);
+    }
+
+    public void addIndex(IndexMetaData indexMetaData) {
+        indexes.add(indexMetaData);
+    }
+
+    public void addAllIndex(List<IndexMetaData> indexMetaDataList) {
+        indexes.addAll(indexMetaDataList);
     }
 
 }

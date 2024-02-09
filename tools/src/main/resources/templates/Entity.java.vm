@@ -4,14 +4,14 @@ package $packageName;
 @lombok.Data
 public class ${tableMetaData.entityName} {
 
-#foreach( $columnMetaData in ${tableMetaData.columnMetaDataList})
-    #if(${columnMetaData.primaryKey})
+#foreach( $column in ${tableMetaData.columns})
+    #if(${column.primaryKey})
     @org.springframework.data.annotation.Id
     #end
-    #if(${columnMetaData.enumMetaData})
-    private ${columnMetaData.enumMetaData.enumName} ${columnMetaData.lowerCamelCaseColumnName};
+    #if(${column.enumMetaData})
+    private ${column.enumMetaData.enumName} ${column.lowerCamelCaseColumnName};
     #else
-    private ${columnMetaData.javaType} ${columnMetaData.lowerCamelCaseColumnName};
+    private ${column.javaType} ${column.lowerCamelCaseColumnName};
     #end
 
 #end

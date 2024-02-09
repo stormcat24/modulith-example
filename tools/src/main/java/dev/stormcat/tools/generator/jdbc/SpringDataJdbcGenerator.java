@@ -69,7 +69,7 @@ public class SpringDataJdbcGenerator {
             new EntityGenerator(velocityEngine, tableMetaData, entityPackageName).write(entityWriter);
             new RepositoryGenerator(velocityEngine, tableMetaData, repositoryPackageName, entityPackageName).write(repositoryWriter);
 
-            tableMetaData.getColumnMetaDataList().stream().filter(cm -> cm.getEnumMetaData() != null).map(ColumnMetaData::getEnumMetaData).forEach(em -> {
+            tableMetaData.getColumns().stream().filter(cm -> cm.getEnumMetaData() != null).map(ColumnMetaData::getEnumMetaData).forEach(em -> {
                 writeEnum(velocityEngine, em, entityDirectory, entityPackageName);
             });
 
