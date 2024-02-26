@@ -24,7 +24,7 @@ dependencies {
     testImplementation("org.junit.jupiter:junit-jupiter")
     testImplementation("org.mockito:mockito-core:5.10.0")
     testImplementation("org.testcontainers:junit-jupiter:1.19.5")
-    testImplementation("org.testcontainers:mysql:1.19.5")
+    testImplementation("org.testcontainers:mysql:1.19.6")
 }
 
 tasks {
