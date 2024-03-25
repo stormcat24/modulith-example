@@ -17,8 +17,8 @@ dependencies {
     implementation("com.mysql:mysql-connector-j:8.3.0")
     implementation("edu.stanford.nlp:stanford-corenlp:4.5.6")
     implementation("edu.stanford.nlp:stanford-corenlp:4.5.6:models")
-    compileOnly("org.projectlombok:lombok:1.18.30")
-    annotationProcessor("org.projectlombok:lombok:1.18.30")
+    compileOnly("org.projectlombok:lombok:1.18.32")
+    annotationProcessor("org.projectlombok:lombok:1.18.32")
 
     testImplementation(platform("org.junit:junit-bom:5.10.2"))
     testImplementation("org.junit.jupiter:junit-jupiter")
