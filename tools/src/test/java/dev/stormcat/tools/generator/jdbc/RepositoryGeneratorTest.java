@@ -16,7 +16,7 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @ExtendWith(MysqlExtension.class)
-public class RepositoryGeneratorTest {
+class RepositoryGeneratorTest {
 
     private static VelocityEngine velocityEngine;
 
@@ -26,7 +26,7 @@ public class RepositoryGeneratorTest {
     }
 
     @Test
-    public void write(Connection connection) throws Exception {
+    void write(Connection connection) throws Exception {
         TestDataLoader.load(connection, "/test-schema.sql");
         EnumAnalyzer enumAnalyzer = new EnumAnalyzer(connection);
         List<EnumMetaData> enumMetaDataList = enumAnalyzer.analyze();

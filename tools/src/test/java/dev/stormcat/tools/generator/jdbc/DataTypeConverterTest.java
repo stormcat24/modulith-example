@@ -7,10 +7,10 @@ import java.sql.Types;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrowsExactly;
 
-public class DataTypeConverterTest {
+class DataTypeConverterTest {
 
     @Test
-    public void convert() {
+    void convert() {
         assertEquals("boolean", DataTypeConverter.toJavaType(Types.BIT));
         assertEquals("boolean", DataTypeConverter.toJavaType(Types.BOOLEAN));
         assertEquals("short", DataTypeConverter.toJavaType(Types.SMALLINT));

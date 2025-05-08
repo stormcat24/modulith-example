@@ -3,10 +3,10 @@ package dev.stormcat.tools.generator.jdbc;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
-public class TableMetaDataTest {
+class TableMetaDataTest {
 
     @Test
-    public void whenTableNameIsSingularNoun() {
+    void whenTableNameIsSingularNoun() {
         TableMetaData tableMetaData = new TableMetaData("car");
 
         assertEquals("Car", tableMetaData.getEntityName());
@@ -14,7 +14,7 @@ public class TableMetaDataTest {
     }
 
     @Test
-    public void whenTableNameIsSingularNounWithUnderscore() {
+    void whenTableNameIsSingularNounWithUnderscore() {
         TableMetaData tableMetaData = new TableMetaData("electric_car");
 
         assertEquals("ElectricCar", tableMetaData.getEntityName());
@@ -22,7 +22,7 @@ public class TableMetaDataTest {
     }
 
     @Test
-    public void whenTableNameIsPluralNoun() {
+    void whenTableNameIsPluralNoun() {
         TableMetaData tableMetaData = new TableMetaData("posts");
 
         assertEquals("Post", tableMetaData.getEntityName());
@@ -30,7 +30,7 @@ public class TableMetaDataTest {
     }
 
     @Test
-    public void whenTableNameIsPluralNounWithUnderscore() {
+    void whenTableNameIsPluralNounWithUnderscore() {
         TableMetaData tableMetaData = new TableMetaData("test_users");
 
         assertEquals("TestUser", tableMetaData.getEntityName());

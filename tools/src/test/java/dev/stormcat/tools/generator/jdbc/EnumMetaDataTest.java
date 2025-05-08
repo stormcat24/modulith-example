@@ -11,10 +11,10 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 @ExtendWith(MysqlExtension.class)
-public class EnumMetaDataTest {
+class EnumMetaDataTest {
 
     @Test
-    public void analyze(Connection connection) {
+    void analyze(Connection connection) {
         TestDataLoader.load(connection, "/test-schema.sql");
 
         List<EnumMetaData> enumMetaDataList = new EnumAnalyzer(connection).analyze();
