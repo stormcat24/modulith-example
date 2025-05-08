@@ -10,7 +10,7 @@ import java.io.Writer;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class EnumGeneratorTest {
+class EnumGeneratorTest {
 
     private static VelocityEngine velocityEngine;
 
@@ -20,7 +20,7 @@ public class EnumGeneratorTest {
     }
 
     @Test
-    public void write() {
+    void write() {
         EnumMetaData enumMetaData = new EnumMetaData("test_table", "enum_column", "enum('a','b','c')");
 
         Writer writer = new StringWriter();

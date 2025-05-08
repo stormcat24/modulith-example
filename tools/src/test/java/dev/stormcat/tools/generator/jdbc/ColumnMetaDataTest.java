@@ -6,10 +6,10 @@ import java.sql.Types;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class ColumnMetaDataTest {
+class ColumnMetaDataTest {
 
     @Test
-    public void getJavaType_when_DATA_TYPE_is_INTEGER() {
+    void getJavaType_when_DATA_TYPE_is_INTEGER() {
         ColumnMetaData columnMetaData = ColumnMetaData.builder()
                 .dataType(Types.INTEGER)
                 .build();
@@ -18,7 +18,7 @@ public class ColumnMetaDataTest {
     }
 
     @Test
-    public void getArgumentClause_when_DATA_TYPE_is_INTEGER() {
+    void getArgumentClause_when_DATA_TYPE_is_INTEGER() {
         ColumnMetaData columnMetaData = ColumnMetaData.builder()
                 .dataType(Types.INTEGER)
                 .columnName("test_column")

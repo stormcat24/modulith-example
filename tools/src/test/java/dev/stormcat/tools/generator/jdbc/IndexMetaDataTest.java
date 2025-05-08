@@ -6,16 +6,16 @@ import java.sql.Types;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class IndexMetaDataTest {
+class IndexMetaDataTest {
 
     @Test
-    public void getColumnPairName_when_columns_is_empty() {
+    void getColumnPairName_when_columns_is_empty() {
         IndexMetaData indexMetaData = new IndexMetaData("indexName", true);
         assertEquals("", indexMetaData.getUpperCamelColumnPairName());
     }
 
     @Test
-    public void getColumnPairName_when_columns_is_not_empty() {
+    void getColumnPairName_when_columns_is_not_empty() {
         IndexMetaData indexMetaData = new IndexMetaData("indexName", true);
 
         ColumnMetaData column1 = ColumnMetaData.builder()
@@ -41,13 +41,13 @@ public class IndexMetaDataTest {
     }
 
     @Test
-    public void getJavaArgumentClause_when_columns_is_empty() {
+    void getJavaArgumentClause_when_columns_is_empty() {
         IndexMetaData indexMetaData = new IndexMetaData("indexName", true);
         assertEquals("", indexMetaData.getJavaArgumentClause());
     }
 
     @Test
-    public void getJavaArgumentClause_when_columns_is_not_empty() {
+    void getJavaArgumentClause_when_columns_is_not_empty() {
         IndexMetaData indexMetaData = new IndexMetaData("indexName", true);
 
         ColumnMetaData column1 = ColumnMetaData.builder()
@@ -65,13 +65,13 @@ public class IndexMetaDataTest {
     }
 
     @Test
-    public void getSpringDataJdbcArgumentClause_when_columns_is_empty() {
+    void getSpringDataJdbcArgumentClause_when_columns_is_empty() {
         IndexMetaData indexMetaData = new IndexMetaData("indexName", true);
         assertEquals("", indexMetaData.getSpringDataJdbcArgumentClause());
     }
 
     @Test
-    public void getSprintDataJdbcArgumentClause_when_columns_is_not_empty() {
+    void getSprintDataJdbcArgumentClause_when_columns_is_not_empty() {
         IndexMetaData indexMetaData = new IndexMetaData("indexName", true);
 
         ColumnMetaData column1 = ColumnMetaData.builder()

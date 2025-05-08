@@ -11,7 +11,7 @@ import java.sql.Connection;
 import java.util.List;
 
 @ExtendWith(MysqlExtension.class)
-public class TableAnalyzerTest {
+class TableAnalyzerTest {
 
     @Test
     void analyze_when_test_schema_sql(Connection connection) throws Exception {

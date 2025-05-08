@@ -4,7 +4,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
-public class WordAnalyzerTest {
+class WordAnalyzerTest {
 
     private WordAnalyzer wordAnalyzer;
 
@@ -14,7 +14,7 @@ public class WordAnalyzerTest {
     }
 
     @Test
-    public void createCoreDocument_ShouldThrowException_WhenTextIsEmpty() {
+    void createCoreDocument_ShouldThrowException_WhenTextIsEmpty() {
         Exception exception = assertThrows(IllegalArgumentException.class, () -> {
             wordAnalyzer.createCoreDocument("");
         });
@@ -22,7 +22,7 @@ public class WordAnalyzerTest {
     }
 
     @Test
-    public void createCoreDocument_ShouldThrowException_WhenTextContainsSpace() {
+    void createCoreDocument_ShouldThrowException_WhenTextContainsSpace() {
         Exception exception = assertThrows(IllegalArgumentException.class, () -> {
             wordAnalyzer.createCoreDocument("book cars");
         });
@@ -30,32 +30,32 @@ public class WordAnalyzerTest {
     }
 
     @Test
-    public void isSingular_ShouldReturnTrue_WhenTextIsSingularNoun() {
+    void isSingular_ShouldReturnTrue_WhenTextIsSingularNoun() {
         assertTrue(wordAnalyzer.isSingular("book"));
     }
 
     @Test
-    public void isSingular_ShouldReturnFalse_WhenTextIsPluralNoun() {
+    void isSingular_ShouldReturnFalse_WhenTextIsPluralNoun() {
         assertFalse(wordAnalyzer.isSingular("posts"));
     }
 
     @Test
-    public void toLemma_ShouldReturnSingular_WhenTextIsSingularNoun() {
+    void toLemma_ShouldReturnSingular_WhenTextIsSingularNoun() {
         assertEquals("book", wordAnalyzer.toLemma("book"));
     }
 
     @Test
-    public void toLemma_ShouldReturnSingular_WhenTextIsPluralNoun() {
+    void toLemma_ShouldReturnSingular_WhenTextIsPluralNoun() {
         assertEquals("post", wordAnalyzer.toLemma("posts"));
     }
 
     @Test
-    public void toLemmaWithUnderscore_ShouldReturnSingular_WhenTextIsPluralNoun() {
+    void toLemmaWithUnderscore_ShouldReturnSingular_WhenTextIsPluralNoun() {
         assertEquals("post", wordAnalyzer.toLemmaWithUnderscore("posts"));
     }
 
     @Test
-    public void toLemmaWithUnderscore_ShouldReturnSingular_WhenTextIsPluralNounWithUnderscore() {
+    void toLemmaWithUnderscore_ShouldReturnSingular_WhenTextIsPluralNounWithUnderscore() {
         assertEquals("test_user", wordAnalyzer.toLemmaWithUnderscore("test_users"));
     }
 }
