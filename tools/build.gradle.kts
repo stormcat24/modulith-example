@@ -15,8 +15,8 @@ dependencies {
     implementation("info.picocli:picocli:4.7.5")
     implementation("org.liquibase:liquibase-core:4.26.0")
     implementation("com.mysql:mysql-connector-j:8.3.0")
-    implementation("edu.stanford.nlp:stanford-corenlp:4.5.6")
-    implementation("edu.stanford.nlp:stanford-corenlp:4.5.6:models")
+    implementation("edu.stanford.nlp:stanford-corenlp:4.5.7")
+    implementation("edu.stanford.nlp:stanford-corenlp:4.5.7:models")
     compileOnly("org.projectlombok:lombok:1.18.30")
     annotationProcessor("org.projectlombok:lombok:1.18.30")
 
