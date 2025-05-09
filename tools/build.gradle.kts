@@ -13,7 +13,7 @@ repositories {
 dependencies {
     implementation("org.apache.velocity:velocity-engine-core:2.3")
     implementation("info.picocli:picocli:4.7.5")
-    implementation("org.liquibase:liquibase-core:4.26.0")
+    implementation("org.liquibase:liquibase-core:4.28.0")
     implementation("com.mysql:mysql-connector-j:8.3.0")
     implementation("edu.stanford.nlp:stanford-corenlp:4.5.6")
     implementation("edu.stanford.nlp:stanford-corenlp:4.5.6:models")
